@@ -1,0 +1,62 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="https://user-images.githubusercontent.com/20112458/49326597-773b7280-f57a-11e8-853d-20ed61d18b0d.png" />
+    <link rel="stylesheet" href={{ url_for('static', filename='css/style.css') }}>
+</head>
+
+<body>
+    <center>
+        <h1>
+            <img src="https://user-images.githubusercontent.com/20112458/49326597-773b7280-f57a-11e8-853d-20ed61d18b0d.png" alt="CANDICE" style="width:40px;height:40px;" />VIA
+        </h1>
+    </center>
+    <div class="box"></div>
+    <div class="boxed">
+        <div>
+            <div id="chatbox">
+                <img src="https://user-images.githubusercontent.com/20112458/49326597-773b7280-f57a-11e8-853d-20ed61d18b0d.png" alt="VIA" style="width:40px;height:40px;" />
+                <p class="botText">
+                    <span>Hi! I'm VIA, a ChatBot looking for a job. I will be attending this technical interview.</span>
+                </p>
+            </div>
+            <div id="userInput">
+                <input id="textInput" type="text" name="msg" placeholder="Message" />
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function getBotResponse() {
+        var rawText = $("#textInput").val();
+        var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
+        $("#textInput").val("");
+        $("#chatbox").append(userHtml);
+        document
+            .getElementById("userInput")
+            .scrollIntoView({
+                block: "start",
+                behavior: "smooth"
+            });
+        $.get("/get", {
+            msg: rawText
+        }).done(function(data) {
+            var botHtml = '<p class="botText"><span>' + data + "</span></p>";
+            $("#chatbox").append(botHtml);
+            document
+                .getElementById("userInput")
+                .scrollIntoView({
+                    block: "start",
+                    behavior: "smooth"
+                });
+        });
+    }
+    $("#textInput").keypress(function(e) {
+        if (e.which == 13) {
+            getBotResponse();
+        }
+    });
+</script>
+
+</html>
