@@ -11,9 +11,9 @@ from tqdm import tqdm
 from sklearn.utils import shuffle
 from tensorlayer.layers import DenseLayer, EmbeddingInputlayer, Seq2Seq, retrieve_seq_length_op2
 
-from data.twitter import data  # (not work in python 2.7)
+from data.via import data  # (not work in python 2.7)
 # import imp
-# data = imp.load_source('data.twitter.data', 'data/twitter/data.py')
+# data = imp.load_source('data.via.data', 'data/via/data.py')
 
 
 
@@ -32,7 +32,7 @@ Training model [optional args]
 """
 
 @click.command()
-@click.option('-dc', '--data-corpus', default='twitter', help='Data corpus to use for training and testing',)
+@click.option('-dc', '--data-corpus', default='via', help='Data corpus to use for training and testing',)
 @click.option('-bs', '--batch-size', default=32, help='Batch size for training on minibatches',)
 @click.option('-n', '--num-epochs', default=50, help='Number of epochs for training',)
 @click.option('-lr', '--learning-rate', default=0.001, help='Learning rate to use when training model',)

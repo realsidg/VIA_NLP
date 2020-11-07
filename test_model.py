@@ -9,7 +9,7 @@ import tensorlayer as tl
 from tqdm import tqdm
 from sklearn.utils import shuffle
 from tensorlayer.layers import DenseLayer, EmbeddingInputlayer, Seq2Seq, retrieve_seq_length_op2
-from data.twitter import data
+from data.via import data
 
 
 class chatbot(object):
@@ -25,7 +25,7 @@ class chatbot(object):
 	net = None
 	net_rnn = None
 	y = None
-	data_corpus = "twitter"
+	data_corpus = "via"
 	sess_config = tf.ConfigProto(allow_soft_placement=True, log_device_placement=False)
 	
 	def __init__(self):
